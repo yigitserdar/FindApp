@@ -1,2 +1,1 @@
-# FindApp
-Find places you need
+Find Places you want
