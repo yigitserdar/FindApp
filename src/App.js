@@ -53,7 +53,9 @@ class App extends Component {
           {this.state.venues.map(venue => {
             return (
               <li key={venue.venue.name}>
-                {venue.venue.name} Location: {venue.venue.location.address}
+                {venue.venue.name} Address: {venue.venue.location.address}{" "}
+                Distance: {venue.venue.location.distance} meter Category:{" "}
+                {venue.venue.categories[0].name}{" "}
               </li>
             );
           })}
