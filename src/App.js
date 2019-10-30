@@ -8,25 +8,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showText: false,
       latlong: "",
       venues: []
     };
   }
 
   componentDidMount() {
+    this.setState({ showText: true });
     this.getLocation();
   }
 
   getLocation = () => {
     navigator.geolocation.getCurrentPosition(response => {
-      this.setState(
-        {
-          latlong: response.coords.latitude + "," + response.coords.longitude
-        },
-        () => {
-          this.getVenues("");
-        }
-      );
+      this.setState({
+        latlong: response.coords.latitude + "," + response.coords.longitude
+      });
     });
   };
 
@@ -43,14 +40,19 @@ class App extends Component {
     };
     trackPromise(
       Axios.get(endPoint + new URLSearchParams(params)).then(response => {
-        this.setState({ venues: response.data.response.groups[0].items });
+        this.setState({
+          showText: false,
+          venues: response.data.response.groups[0].items
+        });
       })
     );
   };
 
   render() {
+    const text = this.state.showText ? "welcome" : this.getVenues;
     return (
       <div>
+        <h1>{text}</h1>
         <Query getVenues={this.getVenues} />
         <ul>
           {this.state.venues.map(venue => {
