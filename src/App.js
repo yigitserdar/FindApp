@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Axios from "axios";
 import Query from "./Query";
+import { trackPromise } from "react-promise-tracker";
 
 class App extends Component {
   constructor(props) {
@@ -40,9 +41,11 @@ class App extends Component {
       limit: "10",
       sortByDistance: "1"
     };
-    Axios.get(endPoint + new URLSearchParams(params)).then(response => {
-      this.setState({ venues: response.data.response.groups[0].items });
-    });
+    trackPromise(
+      Axios.get(endPoint + new URLSearchParams(params)).then(response => {
+        this.setState({ venues: response.data.response.groups[0].items });
+      })
+    );
   };
 
   render() {
