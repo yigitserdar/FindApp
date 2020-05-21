@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { usePromiseTracker } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
 
-const LoadingIndicator = props => {
+const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();
   return (
     promiseInProgress && (
@@ -19,6 +19,7 @@ const LoadingIndicator = props => {
 
 ReactDOM.render(
   <div>
+    <h1 className="title">Find Your Service Place</h1>
     <App />
     <LoadingIndicator />
   </div>,

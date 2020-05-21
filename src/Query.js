@@ -5,17 +5,18 @@ class Query extends Component {
     super(props);
 
     this.state = {
-      searchInput: ""
+      searchInput: "",
     };
   }
 
-  newSearcher = event => {
+  newSearcher = (event) => {
     this.setState({ searchInput: event.target.value });
   };
   render() {
     return (
-      <div>
+      <div className="container">
         <input
+          className="input"
           onChange={this.newSearcher}
           type="text"
           placeholder="Search"
@@ -23,6 +24,7 @@ class Query extends Component {
           id="searchInput"
         />
         <button
+          className="button"
           onClick={this.props.getVenues.bind(null, this.state.searchInput)}
         >
           Search

@@ -8,59 +8,65 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showText: false,
+      showInitialMessage: false,
       latlong: "",
-      venues: []
+      venues: [],
     };
   }
 
   componentDidMount() {
-    this.setState({ showText: true });
+    this.setState({
+      showInitialMessage: true,
+    });
     this.getLocation();
   }
 
   getLocation = () => {
-    navigator.geolocation.getCurrentPosition(response => {
+    navigator.geolocation.getCurrentPosition((response) => {
       this.setState({
-        latlong: response.coords.latitude + "," + response.coords.longitude
+        latlong: response.coords.latitude + "," + response.coords.longitude,
       });
     });
   };
 
-  getVenues = query => {
+  getVenues = (query) => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const params = {
       client_id: "CS1DCR3PAJITL25EF3FJHAZB5LE1OD5PADOGFYUF5IQM0XO0",
       client_secret: "VRLSN051WJVNKM1K1RR0T5RKZQO52MFLLRCXPLMFLKHYTLU5",
       ll: this.state.latlong,
       query: query,
-      v: "20192810",
+      v: "20190411",
       limit: "10",
-      sortByDistance: "1"
+      sortByDistance: "1",
     };
     trackPromise(
-      Axios.get(endPoint + new URLSearchParams(params)).then(response => {
+      Axios.get(endPoint + new URLSearchParams(params)).then((response) => {
         this.setState({
-          showText: false,
-          venues: response.data.response.groups[0].items
+          showInitialMessage: false,
+          venues: response.data.response.groups[0].items,
         });
       })
     );
   };
 
   render() {
-    const text = this.state.showText ? "welcome" : this.getVenues;
+    const text = this.state.showInitialMessage ? (
+      <h2 className="beforeResultsText">You can find results here...</h2>
+    ) : (
+      this.getVenues
+    );
     return (
       <div>
-        <h1>{text}</h1>
         <Query getVenues={this.getVenues} />
-        <ul>
-          {this.state.venues.map(venue => {
+        <h1>{text}</h1>
+        <ul className="list">
+          {this.state.venues.map((venue) => {
             return (
               <li key={venue.venue.name}>
                 {venue.venue.name} Address: {venue.venue.location.address}{" "}
                 Distance: {venue.venue.location.distance} meter Category:{" "}
-                {venue.venue.categories[0].name}{" "}
+                {venue.venue.categories[0].name}
               </li>
             );
           })}
