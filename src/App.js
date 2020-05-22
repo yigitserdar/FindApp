@@ -63,11 +63,23 @@ class App extends Component {
         <ul className="list">
           {this.state.venues.map((venue) => {
             return (
-              <li key={venue.venue.name}>
-                {venue.venue.name} Address: {venue.venue.location.address}{" "}
-                Distance: {venue.venue.location.distance} meter Category:{" "}
-                {venue.venue.categories[0].name}
-              </li>
+              <div className="card">
+                <li className="card--title" key={venue.venue.name}>
+                  {venue.venue.name}
+                </li>
+                <li>
+                  Address:{" "}
+                  <span className="card-adress">
+                    {venue.venue.location.address}{" "}
+                  </span>
+                </li>
+                <li>
+                  Distance:{" "}
+                  <span className="card-distance">
+                    {venue.venue.location.distance} meter
+                  </span>
+                </li>
+              </div>
             );
           })}
         </ul>
