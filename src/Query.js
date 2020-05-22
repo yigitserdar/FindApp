@@ -19,7 +19,7 @@ class Query extends Component {
           className="input"
           onChange={this.newSearcher}
           type="text"
-          placeholder="Search"
+          placeholder="Exp: pub"
           name="searchInput"
           id="searchInput"
         />
