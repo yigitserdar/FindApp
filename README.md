@@ -1,2 +1,3 @@
 Find Places you want
-yigitserdar.com/FindApp
+<br>
+<a href="yigitserdar.com/FindApp">Visit</a>
