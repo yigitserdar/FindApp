@@ -36,8 +36,8 @@ class App extends Component {
       client_secret: "VRLSN051WJVNKM1K1RR0T5RKZQO52MFLLRCXPLMFLKHYTLU5",
       ll: this.state.latlong,
       query: query,
-      v: "20190411",
-      limit: "10",
+      v: "20200522",
+      limit: "9",
       sortByDistance: "1",
     };
     trackPromise(
@@ -60,29 +60,32 @@ class App extends Component {
       <div>
         <Query getVenues={this.getVenues} />
         <h1>{text}</h1>
-        <ul className="list">
-          {this.state.venues.map((venue) => {
-            return (
-              <div className="card">
-                <li className="card--title" key={venue.venue.name}>
-                  {venue.venue.name}
-                </li>
-                <li>
-                  Address:{" "}
-                  <span className="card-adress">
-                    {venue.venue.location.address}{" "}
-                  </span>
-                </li>
-                <li>
-                  Distance:{" "}
-                  <span className="card-distance">
-                    {venue.venue.location.distance} meter
-                  </span>
-                </li>
-              </div>
-            );
-          })}
-        </ul>
+        <div className="row">
+          <ul className="list">
+            {this.state.venues.map((venue) => {
+              return (
+                <div className="card">
+                  <li className="card--title" key={venue.venue.name}>
+                    {venue.venue.name}
+                  </li>
+                  <hr></hr>
+                  <li>
+                    Address{" "}
+                    <span className="card-adress">
+                      {venue.venue.location.address}{" "}
+                    </span>
+                  </li>
+                  <li>
+                    Distance{" "}
+                    <span className="card-distance">
+                      {venue.venue.location.distance} meter
+                    </span>
+                  </li>
+                </div>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
   }

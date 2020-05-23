@@ -23,12 +23,14 @@ class Query extends Component {
           name="searchInput"
           id="searchInput"
         />
-        <button
-          className="button"
-          onClick={this.props.getVenues.bind(null, this.state.searchInput)}
-        >
-          Search
-        </button>
+        <div className="button-div">
+          <button
+            className="button"
+            onClick={this.props.getVenues.bind(null, this.state.searchInput)}
+          >
+            Search
+          </button>
+        </div>
       </div>
     );
   }
