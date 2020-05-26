@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 
 class Query extends Component {
   constructor(props) {
@@ -6,12 +7,35 @@ class Query extends Component {
 
     this.state = {
       searchInput: "",
+      elements: document.getElementsByClassName("list"),
+      i: "",
     };
   }
 
   newSearcher = (event) => {
     this.setState({ searchInput: event.target.value });
   };
+
+  listView = () => {
+    for (
+      this.state.i = 0;
+      this.state.i < this.state.elements.length;
+      this.state.i++
+    ) {
+      this.state.elements[this.state.i].style.display = "block";
+    }
+  };
+
+  gridView = () => {
+    for (
+      this.state.i = 0;
+      this.state.i < this.state.elements.length;
+      this.state.i++
+    ) {
+      this.state.elements[this.state.i].style.display = "grid";
+    }
+  };
+
   render() {
     return (
       <div className="container">
@@ -30,6 +54,16 @@ class Query extends Component {
           >
             Search
           </button>
+          <div>
+            <button className="btn" type="submit" onClick={this.gridView}>
+              <i className="fa fa-th-large"></i>
+              Grid
+            </button>
+            <button className="btn" type="submit" onClick={this.listView}>
+              <i className="fa fa-bars"></i>
+              List
+            </button>
+          </div>
         </div>
       </div>
     );

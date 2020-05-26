@@ -60,32 +60,30 @@ class App extends Component {
       <div>
         <Query getVenues={this.getVenues} />
         <h1>{text}</h1>
-        <div className="row">
-          <ul className="list">
-            {this.state.venues.map((venue) => {
-              return (
-                <div className="card">
-                  <li className="card--title" key={venue.venue.name}>
-                    {venue.venue.name}
-                  </li>
-                  <hr></hr>
-                  <li>
-                    Address{" "}
-                    <span className="card-adress">
-                      {venue.venue.location.address}{" "}
-                    </span>
-                  </li>
-                  <li>
-                    Distance{" "}
-                    <span className="card-distance">
-                      {venue.venue.location.distance} meter
-                    </span>
-                  </li>
-                </div>
-              );
-            })}
-          </ul>
-        </div>
+        <ul className="list">
+          {this.state.venues.map((venue) => {
+            return (
+              <div className="card">
+                <li className="card--title" key={venue.venue.name}>
+                  {venue.venue.name}
+                </li>
+                <hr></hr>
+                <li>
+                  Address{" "}
+                  <span className="card-adress">
+                    {venue.venue.location.address}{" "}
+                  </span>
+                </li>
+                <li>
+                  Distance{" "}
+                  <span className="card-distance">
+                    {venue.venue.location.distance} meter
+                  </span>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
       </div>
     );
   }
